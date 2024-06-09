@@ -9,32 +9,40 @@
 #define MAX_BULLETS 8
 #define MAX_LIVES 4
 
-typedef struct
+struct Bullet
 {
     int type; /* live or blank */
-} Bullet;
+};
 
-typedef struct
+struct Player
 {
     char name[30];
-    int charges;
-} Player;
+    int charges; // lives
+    struct Player *opponent;
+};
+
+struct Item
+{
+    char name[15];
+    char description[200];
+    // functionality goes here
+};
 
 // Bullet //
 
-void shuffle(Bullet *array, int quantity)
+void shuffle(struct Bullet *array, int quantity)
 {
     for (int i = quantity - 1; i > 0; i--)
     {
         int j = rand() % (i + 1);
-        Bullet temp = array[i];
+        struct Bullet temp = array[i];
         array[i] = array[j];
         array[j] = temp;
     }
     printf("Shuffled!\n");
 }
 
-char *printBulletType(Bullet bullet)
+char *printBulletType(struct Bullet bullet)
 {
     switch (bullet.type)
     {
@@ -49,7 +57,7 @@ char *printBulletType(Bullet bullet)
     }
 }
 
-void printBulletArray(Bullet *bulletArray)
+void printBulletArray(struct Bullet *bulletArray)
 {
     for (int i = 0; i < MAX_BULLETS; i++)
     {
@@ -60,7 +68,7 @@ void printBulletArray(Bullet *bulletArray)
     printf("\n");
 }
 
-void generateBulletsArray(Bullet *bulletArray)
+void generateBulletsArray(struct Bullet *bulletArray)
 {
     int i;
     int quantity = (rand() % (MAX_BULLETS - 1)) + 2;
@@ -89,7 +97,7 @@ void generateBulletsArray(Bullet *bulletArray)
 }
 
 // Player //
-void promptPlayerName(Player *player)
+void promptPlayerName(struct Player *player)
 {
     printf("Enter Name: ");
     fgets(player->name, sizeof(player->name), stdin);
@@ -100,7 +108,7 @@ void promptPlayerName(Player *player)
     }
 }
 
-void assignCharges(Player *player, Player *dealer)
+void assignCharges(struct Player *player, struct Player *dealer)
 {
     int charges = (rand() % (MAX_LIVES - 1)) + 2;
     player->charges = charges;
@@ -111,16 +119,19 @@ int main()
 {
     srand(time(NULL));
 
-    Bullet bulletArray[8];
-    Player dealer;
+    struct Bullet bulletArray[8];
+    struct Player dealer;
     strcpy(dealer.name, "Dealer");
-    Player player;
+    struct Player player;
     promptPlayerName(&player);
     assignCharges(&player, &dealer);
+    dealer.opponent = &player;
+    player.opponent = &dealer;
 
     generateBulletsArray(bulletArray);
 
     printf("Dealer Name: %s, Lives: %d\n", dealer.name, dealer.charges);
     printf("Player Name: %s, Lives: %d\n", player.name, player.charges);
+    printf("Dealer's opponent: %s\n", dealer.opponent->name);
     return 0;
 }
