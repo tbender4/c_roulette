@@ -6,25 +6,32 @@
 #include "player.h"
 #include "item.h"
 
+// Global variables
+Bullet bulletArray[MAX_BULLETS];
+Player dealer, player;
+
+
+void initGame() {
+    generateBulletsArray(bulletArray);
+    strcpy(dealer.name, "Dealer");
+    strcpy(player.name, "Player");
+    dealer.opponent = &player;
+    player.opponent = &dealer;
+    assignCharges(&player, &dealer);
+    initPlayerItems(&player);
+    initPlayerItems(&dealer);
+}
+
+void gameLoop() {
+
+
+  // TODO: Make this a loop
+}
+
 int main()
 {
     srand(time(NULL));
-
-    Bullet bulletArray[MAX_BULLETS];
-    generateBulletsArray(bulletArray);
-    
-    Player dealer, player;
-    strcpy(dealer.name, "Dealer");
-    // promptPlayerName(&player);
-    strcpy(player.name, "Player");
-
-    assignCharges(&player, &dealer);
-    dealer.opponent = &player;
-    player.opponent = &dealer;
-
-    initPlayerItems(&dealer);
-    initPlayerItems(&player);
-
+    initGame();
     printPlayer(&dealer);
     printPlayer(&player);
 

@@ -6,7 +6,7 @@
 #define MAX_CHARGES 4
 #define MAX_PLAYER_ITEMS 8
 
-typedef struct Item;
+// typedef struct Item;
 
 struct Player
 {
@@ -24,6 +24,5 @@ void printPlayer(Player *player);
 // void assignRandomItems(Player *player);
 
 void initPlayerItems(Player *player);
-
 
 #endif

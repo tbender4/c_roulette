@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "item.h"
-#include "player.h",
+#include "player.h"
 
 // Predefined items
 Item itemPool[ITEM_POOL_COUNT] = {
@@ -10,10 +10,7 @@ Item itemPool[ITEM_POOL_COUNT] = {
     {"beer", ""},
     {"cigarette", ""},
     {"magnifying glass", ""},
-    {"handcuffs", ""}
-};
-
-Item nullItem = { "EMPTY", "" };
+    {"handcuffs", ""}};
 
 // void assignRandomItemsToArray(Item *itemArray, int *numItems) {
 //     *numItems = (rand() % NEW_ITEMS_RANGE_END - 1) + NEW_ITEMS_RANGE_START;
@@ -26,7 +23,7 @@ Item nullItem = { "EMPTY", "" };
 // void assignRandomItemsToPlayer(Player *player)
 // {
 //     int numItems = (rand() % 4) + 2;
-    
+
 //     player->numItems = numItems;
 //     for (int i = 0; i < numItems; i++)
 //     {
@@ -35,14 +32,20 @@ Item nullItem = { "EMPTY", "" };
 //     }
 // }
 
-void printItem(Item *item) {
-    printf("s - %s\n",  item->name, item->description);
+void printItem(Item *item)
+{
+    if (item == NULL)
+        printf("Empty\n");
+    else
+        printf("s - %s\n", item->name, item->description);
 }
 
-void printItemsFromPlayer(Item **playerItems, int numItems) {
-    
-    for (int i = 0; i < numItems; i++) {
+void printItemsFromPtr(Item **itemsPtr, int numItems)
+{
+    for (int i = 0; i < numItems; i++)
+    {
         printf("Item %d: ", i + 1);
-        printItem(playerItems[i]);
+        printItem(*itemsPtr);
+        itemsPtr++;
     }
 }

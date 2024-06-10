@@ -16,7 +16,6 @@ extern Item itemPool[ITEM_POOL_COUNT];
 extern Item nullItem;
 
 // void generateRandomItems(Item *itemArray, int *numItems);
-void printItemsFromPlayer(Item *itemArray, int numItems);
-// void initPlayerItems(Item **playerItems);
+void printItemsFromPtr(Item **itemArray, int numItems);
 
 #endif

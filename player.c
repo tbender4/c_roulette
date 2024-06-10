@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "player.h"
 #include "item.h"
+#include "player.h"
 
 void promptPlayerName(Player *player)
 {
@@ -15,6 +15,13 @@ void promptPlayerName(Player *player)
     }
 }
 
+void initPlayerItems(Player *player)
+{
+    player->numItems = 0;
+    for (int i = 0; i < MAX_PLAYER_ITEMS; i++)
+        player->items[i] = NULL;
+}
+
 void assignCharges(Player *player, Player *dealer)
 {
     int charges = (rand() % (MAX_CHARGES - 1)) + MIN_CHARGES;
@@ -22,17 +29,8 @@ void assignCharges(Player *player, Player *dealer)
     dealer->charges = charges;
 }
 
-void printPlayer(Player *player) {
+void printPlayer(Player *player)
+{
     printf("Dealer Name: %s, Lives: %d\n", player->name, player->charges);
-    printItemsFromPlayer(player->items, player->numItems);
-}
-
-/// @brief 
-
-/// @param playerItems 
-void initPlayerItems(Player *player) {
-    
-    player->numItems = 0;
-    for (int i = 0; i < MAX_PLAYER_ITEMS; i++)
-        player->items[i] = &nullItem;
+    // printItemsFromPtr(player->items, MAX_PLAYER_ITEMS);
 }
