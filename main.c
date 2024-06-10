@@ -4,15 +4,17 @@
 #include <string.h>
 #include "bullet.h"
 #include "player.h"
+#include "item.h"
 
 int main()
 {
     srand(time(NULL));
 
     Bullet bulletArray[MAX_BULLETS];
-    Player dealer;
+    generateBulletsArray(bulletArray);
+    
+    Player dealer, player;
     strcpy(dealer.name, "Dealer");
-    Player player;
     // promptPlayerName(&player);
     strcpy(player.name, "Player");
 
@@ -20,9 +22,11 @@ int main()
     dealer.opponent = &player;
     player.opponent = &dealer;
 
-    generateBulletsArray(bulletArray);
+    initPlayerItems(&dealer);
+    initPlayerItems(&player);
 
-    printf("Dealer Name: %s, Lives: %d\n", dealer.name, dealer.charges);
-    printf("Player Name: %s, Lives: %d\n", player.name, player.charges);
+    printPlayer(&dealer);
+    printPlayer(&player);
+
     return 0;
 }

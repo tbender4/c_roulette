@@ -17,7 +17,22 @@ void promptPlayerName(Player *player)
 
 void assignCharges(Player *player, Player *dealer)
 {
-    int charges = (rand() % (MAX_LIVES - 1)) + 2;
+    int charges = (rand() % (MAX_CHARGES - 1)) + MIN_CHARGES;
     player->charges = charges;
     dealer->charges = charges;
+}
+
+void printPlayer(Player *player) {
+    printf("Dealer Name: %s, Lives: %d\n", player->name, player->charges);
+    printItemsFromPlayer(player->items, player->numItems);
+}
+
+/// @brief 
+
+/// @param playerItems 
+void initPlayerItems(Player *player) {
+    
+    player->numItems = 0;
+    for (int i = 0; i < MAX_PLAYER_ITEMS; i++)
+        player->items[i] = &nullItem;
 }
