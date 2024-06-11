@@ -13,6 +13,6 @@ void flipShotgunHolder() {
 void shoot(Player* victim) {
     Bullet *firedBullet = &bulletArray[bulletIndex];
     
-    printf("%s shot %s with a %d round!", shotgunHolder->name, victim->name, firedBullet->type);
+    printf("%s shot %s with a %s round!", shotgunHolder->name, victim->name, printBulletType(*firedBullet));
 
 }

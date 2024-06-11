@@ -16,4 +16,6 @@ typedef struct
 void printBulletArray(Bullet *bulletArray);
 void generateBulletsArray(Bullet *bulletArray);
 
+char *printBulletType(Bullet bullet);
+
 #endif // BULLET_H

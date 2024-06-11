@@ -55,6 +55,6 @@ void gameLoop()
         printPlayer(&player);
         shoot(&dealer);
         
-        break; // User input
+        break; //TODO: User input
     }
 }

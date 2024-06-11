@@ -8,7 +8,7 @@
 
 typedef struct
 {
-    char name[16];
+    char name[17];
     char description[56];
 } Item;
 
