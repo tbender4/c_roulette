@@ -3,6 +3,7 @@
         "*.ejs": "html",
         "string.h": "c",
         "item.h": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "time.h": "c"
     }
 }

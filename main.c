@@ -10,9 +10,21 @@
 Bullet bulletArray[MAX_BULLETS];
 Player dealer, player;
 
+void initGame();
+void gameLoop();
 
-void initGame() {
+int main()
+{
+    srand(time(NULL));
+    initGame();
+    gameLoop();
+    return 0;
+}
+
+void initGame()
+{
     generateBulletsArray(bulletArray);
+
     strcpy(dealer.name, "Dealer");
     strcpy(player.name, "Player");
     dealer.opponent = &player;
@@ -22,18 +34,15 @@ void initGame() {
     initPlayerItems(&dealer);
 }
 
-void gameLoop() {
-
-
-  // TODO: Make this a loop
-}
-
-int main()
+void gameLoop()
 {
-    srand(time(NULL));
-    initGame();
-    printPlayer(&dealer);
-    printPlayer(&player);
 
-    return 0;
+    // TODO: Make this a loop
+    while (1)
+    {
+        printPlayer(&dealer);
+        printPlayer(&player);
+        generateChestItems();
+        break;
+    }
 }

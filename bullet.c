@@ -44,15 +44,19 @@ void printBulletArray(Bullet *bulletArray)
 void generateBulletsArray(Bullet *bulletArray)
 {
     int i;
-    int quantity = (rand() % (MAX_BULLETS - 1)) + 2;
+    int upper = MAX_BULLETS, lower = MIN_BULLETS;
+    int randNum = rand();
+    int quantity = (rand() % (upper - lower + 1)) + lower;
+
     printf("Number of bullets to make: %d\n", quantity);
+    
     int liveQuantity = quantity / 2;
 
     if (rand() % 2)
     {
         liveQuantity = quantity - liveQuantity;
     }
-    printf("%d live, %d blank\n", liveQuantity, quantity - liveQuantity);
+    // printf("%d live, %d blank\n", liveQuantity, quantity - liveQuantity);
 
     for (i = 0; i < quantity; i++)
     {

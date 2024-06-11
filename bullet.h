@@ -4,6 +4,7 @@
 #define LIVE 1
 #define BLANK 0
 #define EMPTY -1
+#define MIN_BULLETS 2
 #define MAX_BULLETS 8
 
 typedef struct
@@ -12,8 +13,6 @@ typedef struct
     int damage; /* default to 1; become 2 if sawed off */
 } Bullet;
 
-void shuffle(Bullet *array, int quantity);
-char *printBulletType(Bullet bullet);
 void printBulletArray(Bullet *bulletArray);
 void generateBulletsArray(Bullet *bulletArray);
 

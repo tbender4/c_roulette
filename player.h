@@ -21,7 +21,6 @@ typedef struct Player Player;
 void promptPlayerName(Player *player);
 void assignCharges(Player *player, Player *dealer);
 void printPlayer(Player *player);
-// void assignRandomItems(Player *player);
 
 void initPlayerItems(Player *player);
 
