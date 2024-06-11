@@ -4,6 +4,8 @@
         "string.h": "c",
         "item.h": "c",
         "typeinfo": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "stdbool.h": "c",
+        "sdl.h": "c"
     }
 }
