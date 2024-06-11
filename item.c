@@ -9,7 +9,7 @@ Item itemPool[ITEM_POOL_QUANTITY] = {
     {"adrenaline", "steal and item and use it immediately."},
     {"beer", "racks the shotgun. ejects the current shell."},
     {"burner phone", "a mysterious voice gives you insight from the future."},
-    {"expired medicine", "50% chance to regain 2 charges. if not, lose 1 charge."},
+    {"expired medicine", "50\% chance to regain 2 charges. if not, lose 1 charge."},
     {"cigarette", "takes the edge off. regain 1 charge."},
     {"hand saw", "shotgun deals 2 damage."},
     {"handcuffs", "dealer skips the next turn."},

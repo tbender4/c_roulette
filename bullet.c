@@ -70,5 +70,5 @@ void generateBulletsArray(Bullet *bulletArray)
         bulletArray[i].type = EMPTY;
     }
     shuffle(bulletArray, quantity);
-    printBulletArray(bulletArray);
+    // printBulletArray(bulletArray);
 }

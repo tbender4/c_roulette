@@ -9,7 +9,7 @@
 typedef struct
 {
     char name[16];
-    char description[55];
+    char description[56];
 } Item;
 
 extern Item itemPool[ITEM_POOL_QUANTITY];

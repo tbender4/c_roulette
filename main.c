@@ -5,13 +5,18 @@
 #include "bullet.h"
 #include "player.h"
 #include "item.h"
+#include "shotgun.h"
 
 // Global variables
 Bullet bulletArray[MAX_BULLETS];
+int bulletIndex;
 Player dealer, player;
+Player *shotgunHolder;
+//
 
 void initGame();
 void gameLoop();
+void initRound();
 
 int main()
 {
@@ -29,20 +34,27 @@ void initGame()
     strcpy(player.name, "Player");
     dealer.opponent = &player;
     player.opponent = &dealer;
-    assignCharges(&player, &dealer);
+}
+
+void initRound() {
     initPlayerItems(&player);
     initPlayerItems(&dealer);
+    shotgunHolder = &player;
+    bulletIndex = 0;
+    generateChestItems();
 }
 
 void gameLoop()
 {
 
-    // TODO: Make this a loop
     while (1)
     {
+        assignCharges(&player, &dealer);
+        initRound();
         printPlayer(&dealer);
         printPlayer(&player);
-        generateChestItems();
-        break;
+        shoot(&dealer);
+        
+        break; // User input
     }
 }
