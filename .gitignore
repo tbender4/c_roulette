@@ -1,3 +1,2 @@
-debug
-sdl_test
 *.dSYM
+build/debug/*

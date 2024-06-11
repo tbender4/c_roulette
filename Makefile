@@ -1,16 +1,16 @@
 OBJECTS = main.c player.c item.c bullet.c
-CFLAGS = -g
-SDLCFLAGS = -D_THREAD_SAFE
+DEBUG_FLAGS = -g
 SRC = main.c bullet.c player.c item.c shotgun.c
+DEBUG_DIR=build/debug
 
 
 all: build
 
 build: $(SRC)
-	gcc $(CFLAGS) -o debug $(SRC)
+	gcc $(DEBUG_FLAGS) -o $(DEBUG_DIR)/debug $(SRC)
 
 clean:
 	rm -f main
 
 sdl2: sdl2.c
-	gcc -o sdl_test sdl2.c -g `sdl2-config --cflags --libs`
+	gcc ${DEBUG_FLAGS} -o $(DEBUG_DIR)/sdl_test sdl2.c -g `sdl2-config --cflags --libs` -lSDL2_ttf 
