@@ -8,6 +8,8 @@
         "stdbool.h": "c",
         "sdl.h": "c",
         "stdio.h": "c",
-        "sdl_ttf.h": "c"
+        "sdl_ttf.h": "c",
+        "shotgun.h": "c",
+        "player.h": "c"
     }
 }
