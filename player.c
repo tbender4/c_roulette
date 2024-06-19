@@ -34,3 +34,9 @@ void printPlayer(Player *player)
     printf("Dealer Name: %s, Lives: %d\n", player->name, player->charges);
     // printItemsFromPtr(player->items, MAX_PLAYER_ITEMS);
 }
+
+void printPlayerItems(Player *player)
+{
+    printf("Items for %s:\n", player->name);
+    printItemsFromPtr(player->items, MAX_PLAYER_ITEMS);
+}

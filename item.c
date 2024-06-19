@@ -22,17 +22,20 @@ void printItem(Item *item)
     if (item == NULL)
         printf("Empty\n");
     else
-        printf("%s - %s\n", item->name, item->description);
+        printf("%s - %s ", item->name, item->description);
 }
 
 void printItemsFromPtr(Item **itemsPtr, int numItems)
 {
+    printf("Items: ");
     for (int i = 0; i < numItems; i++)
     {
-        printf("Item %d: ", i + 1);
         printItem(*itemsPtr);
+        if (i != numItems)
+            printf("| ");
         itemsPtr++;
     }
+    printf("\n");
 }
 
 /// @brief Assigns 2-5 items into the chest for player to take out

@@ -14,7 +14,7 @@ struct Player
     int charges; // lives
     struct Player *opponent;
     Item *items[8];
-    int numItems;  // Keep track of live items. Dead items are 
+    int numItems; // Keep track of live items. Dead items are
 };
 typedef struct Player Player;
 
@@ -23,5 +23,6 @@ void assignCharges(Player *player, Player *dealer);
 void printPlayer(Player *player);
 
 void initPlayerItems(Player *player);
+void printPlayerItems(Player *player);
 
 #endif
