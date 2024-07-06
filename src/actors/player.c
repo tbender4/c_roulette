@@ -29,10 +29,10 @@ void assignCharges(Player *player, Player *dealer)
     dealer->charges = charges;
 }
 
-void printPlayer(Player *player)
+void printPlayersCharges(Player *dealer, Player *player)
 {
-    printf("Dealer Name: %s, Lives: %d\n", player->name, player->charges);
-    // printItemsFromPtr(player->items, MAX_PLAYER_ITEMS);
+    printf("%s lives: %d | ", dealer->name, dealer->charges);
+    printf("%s lives: %d\n", player->name, player->charges);
 }
 
 void printPlayerItems(Player *player)

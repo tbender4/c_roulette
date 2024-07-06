@@ -10,6 +10,7 @@
         "stdio.h": "c",
         "sdl_ttf.h": "c",
         "shotgun.h": "c",
-        "player.h": "c"
+        "player.h": "c",
+        "bullet.h": "c"
     }
 }

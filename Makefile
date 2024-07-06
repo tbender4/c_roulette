@@ -1,6 +1,6 @@
-OBJECTS = main.c player.c item.c bullet.c
+OBJECTS = src/main.c src/player.c src/item.c src/bullet.c
 DEBUG_FLAGS = -g
-SRC = main.c bullet.c player.c item.c shotgun.c
+SRC = src/main.c src/bullet.c src/player.c src/item.c src/shotgun.c
 DEBUG_DIR=build/debug
 
 
