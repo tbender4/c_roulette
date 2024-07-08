@@ -10,6 +10,7 @@ typedef struct
 {
     char name[17];
     char description[56];
+    void (*use)(void);  // function that applies its effect when selected by the user
 } Item;
 
 extern Item itemPool[ITEM_POOL_QUANTITY];

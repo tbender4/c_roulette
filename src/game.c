@@ -1,6 +1,5 @@
-#ifndef GAME_H
-#define GAME_H
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "game.h"
 #include "actors/player.h"
 
@@ -29,12 +28,94 @@ void initRound()
     bulletIndex = 0;
     assignCharges(&player, &dealer);
     generateChestItems();
-    runInputDialog();
+    cpuDrawItemsFromChest(&dealer);
+    playerDrawItemsFromChest(&player);
 }
 
-void gameLoop() {
-        initRound();
-        exit(0);
+void beginTurn()
+{
+    runInputDialogLoop(); // TODO
+}
+
+void runInputDialogLoop()
+{
+    while (true)
+    {
+        // TODO all this
+        //
+        break;
+    }
+}
+
+void flipShotgunHolder()
+{
+    if (shotgunHolder == &player)
+    {
+        shotgunHolder = &dealer;
+    }
+    else
+    {
+        shotgunHolder = &player;
+    }
+    printf("Shotgun now controlled by %s\n", shotgunHolder->name);
+}
+
+void pickUpShotgun()
+{
+    char inputChar;
+    int ch;
+
+    while (true)
+    {
+        printf("Shoot dealer (1) or yourself (2): ");
+        inputChar = fgetc(stdin);
+
+        while ((ch = getchar()) != '\n' && ch != EOF)
+            ;
+        if (inputChar != '1' || inputChar != '2')
+        {
+            printf("Invalid option.\n");
+            continue;
+        }
+        if (fireShotgun(inputChar - '0' - 1))
+        {
+            flipShotgunHolder();
+        }
+        break;
+    }
+}
+
+// returns true if your turn is over
+bool fireShotgun(bool shotYourself)
+{
+    Bullet *firedBullet = &bulletArray[bulletIndex++];
+    Player *victim = shotYourself ? &shotgunHolder : shotgunHolder->opponent;
+    printf("%s shot %s with a %s round!\n", shotgunHolder->name, victim->name, printBulletType(*firedBullet));
+    bool tookDamage = updatePlayerHealth(victim, firedBullet);
+    if (victim == shotgunHolder && !tookDamage)
+    {
+        return true;
+    }
+    return false;
+}
+
+// returns true if you took damage
+bool updatePlayerHealth(Player *player, Bullet *firedBullet)
+{
+    if (firedBullet->type == LIVE)
+    {
+        player->charges--;
+        // if sawed off
+        //   player->charged--
+        return true;
+    }
+    return false;
+}
+
+void gameLoop()
+{
+    initRound();
+    exit(0);
 }
 
 // void gameLoop()
@@ -47,9 +128,7 @@ void gameLoop() {
 //         printPlayer(&dealer);
 //         printPlayer(&player);
 //         shoot(&dealer);
-        
+
 //         break; //TODO: User input
 //     }
 // }
-
-#endif

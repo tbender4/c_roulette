@@ -11,6 +11,7 @@
         "sdl_ttf.h": "c",
         "shotgun.h": "c",
         "player.h": "c",
-        "bullet.h": "c"
+        "bullet.h": "c",
+        "stdlib.h": "c"
     }
 }

@@ -5,19 +5,66 @@
 #include "item.h"
 #include "player.h"
 
-// Predefined items available in the game
-Item itemPool[ITEM_POOL_QUANTITY] = {
-    {"adrenaline", "steal and item and use it immediately."},
-    {"beer", "racks the shotgun. ejects the current shell."},
-    {"burner phone", "a mysterious voice gives you insight from the future."},
-    {"expired medicine", "50\% chance to regain 2 charges. if not, lose 1 charge."},
-    {"cigarette", "takes the edge off. regain 1 charge."},
-    {"hand saw", "shotgun deals 2 damage."},
-    {"handcuffs", "dealer skips the next turn."},
-    {"inverter", "swaps the polarity of the current shell in the chamber."},
-    {"magnifying glass", "check the current round in the chamber."}};
+//// Placeholder functions for each item
+void useAdrenaline()
+{
+    printf("Using adrenaline.\n");
+}
 
-// An array of items available to choose from in the chest.
+void useBeer()
+{
+    printf("Using beer.\n");
+}
+
+void useBurnerPhone()
+{
+    printf("Using burner phone.\n");
+}
+
+void useExpiredMedicine()
+{
+    printf("Using expired medicine.\n");
+}
+
+void useCigarette()
+{
+    printf("Using cigarette.\n");
+}
+
+void useHandSaw()
+{
+    printf("Using hand saw.\n");
+}
+
+void useHandcuffs()
+{
+    printf("Using handcuffs.\n");
+}
+
+void useInverter()
+{
+    printf("Using inverter.\n");
+}
+
+void useMagnifyingGlass()
+{
+    printf("Using magnifying glass.\n");
+}
+////
+
+// Predefined items available in the game
+const Item itemPool[ITEM_POOL_QUANTITY] = {
+    {"adrenaline", "steal and item and use it immediately.", useAdrenaline},
+    {"beer", "racks the shotgun. ejects the current shell.", useBeer},
+    {"burner phone", "a mysterious voice gives you insight from the future.", useBurnerPhone},
+    {"expired medicine", "50\% chance to regain 2 charges. if not, lose 1 charge.", useExpiredMedicine},
+    {"cigarette", "takes the edge off. regain 1 charge.", useCigarette},
+    {"hand saw", "shotgun deals 2 damage.", useHandSaw},
+    {"handcuffs", "dealer skips the next turn.", useHandcuffs},
+    {"inverter", "swaps the polarity of the current shell in the chamber.", useInverter},
+    {"magnifying glass", "check the current round in the chamber.", useMagnifyingGlass}};
+
+// Random items will be sent to this chest for the user to widthdraw from
 Item *itemChest[NEW_ITEMS_RANGE_END];
 
 void printItem(Item *item)
@@ -64,25 +111,29 @@ void generateChestItems()
 }
 
 // return if
-bool reachedMaxItems(Player *player)
+bool itemBoardIsFull(Player *player)
 {
     if (player->numItems == MAX_PLAYER_ITEMS)
     {
         printf("How unfortunate...\n");
-        return false
+        return false;
     }
     return true;
 }
-bool tryAddItemToPlayer(Player *player, int index, Item *newItemAddr)
+bool tryAddItemToPlayer(Player *player, int selection, Item *newItemAddr)
 {
-    if (player->items[index - 1] == NULL)
+    if (player->items[selection - 1] == NULL)
     {
-        player->items[index - 1] = newItemAddr;
+        player->items[selection - 1] = newItemAddr;
         player->numItems++;
         return true;
     }
     printf("Item already in slot. Try again\n");
     return false;
+}
+
+void cpuDrawItemsFromChest(Player *player) {
+    // TODO
 }
 
 // Player will draw items from chest one-by-one.
@@ -94,7 +145,7 @@ void playerDrawItemsFromChest(Player *player)
         char inputChar;
         int ch, validInput = 0;
         printf("Widthdrew %s.\n", item->name);
-        if (reachedMaxItems(player))
+        if (itemBoardIsFull(player))
         {
             break;
         }
@@ -106,12 +157,12 @@ void playerDrawItemsFromChest(Player *player)
             inputChar = fgetc(stdin);
             while ((ch = getchar()) != '\n' && ch != EOF)
                 ;
-            if (inputChar < '1' || inputChar > 8)
+            if (inputChar < '1' || inputChar > '8')
             {
                 printf("Invalid option.\n");
                 continue;
             }
-            if (!tryAddItemToPlayer(player, player->items[inputChar - 0], item))
+            if (!tryAddItemToPlayer(player, player->items[inputChar - '0'], item))
             {
                 continue;
             }

@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "item.h"
+#include <stdbool.h>
 #define MIN_CHARGES 2
 #define MAX_CHARGES 4
 #define MAX_PLAYER_ITEMS 8
@@ -15,6 +16,7 @@ struct Player
     struct Player *opponent;
     Item *items[8];
     int numItems; // Keep track of true size of *items.
+    bool isAI;
 };
 typedef struct Player Player;
 
